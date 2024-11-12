@@ -5,9 +5,24 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB362616-53B3-459F-A945-842549B44FF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Abstractions", "Masasamjant.Claiming.Abstractions\Masasamjant.Claiming.Abstractions.csproj", "{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4EC692DB-6DD4-4BAE-B94B-16D7A9C2E58A} = {EB362616-53B3-459F-A945-842549B44FF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BE458A5-7275-4BAF-BE23-E5A7AA9C705F}
