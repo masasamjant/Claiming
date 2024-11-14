@@ -6,10 +6,9 @@
     public interface IClaimable
     {
         /// <summary>
-        /// Gets unique identifier to identify object instance in claiming. Usually this is some key information like
-        /// primary key value in database.
+        /// Gets the <see cref="ClaimKey"/> for this instance.
         /// </summary>
-        /// <returns>A unique identifier of the object instance.</returns>
-        string GetClaimInstanceIdentifier();
+        /// <returns>A <see cref="ClaimKey"/> for this instance.</returns>
+        ClaimKey GetClaimKey();
     }
 }
