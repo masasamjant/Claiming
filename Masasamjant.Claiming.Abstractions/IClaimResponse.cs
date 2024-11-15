@@ -11,8 +11,9 @@
         ClaimResult Result { get; }
 
         /// <summary>
-        /// Gets the <see cref="IClaim"/>, if <see cref="Result"/> is <see cref="ClaimResult.Approved"/>.
+        /// Gets the <see cref="IClaim"/>, if <see cref="Result"/> is <see cref="ClaimResult.Approved"/> or <see cref="ClaimResult.Denied"/>.
         /// </summary>
+        /// <remarks>If <see cref="Result"/> is <see cref="ClaimResult.Denied"/>, then this tells to who has current claim.</remarks>
         IClaim? Claim { get; }
     }
 }

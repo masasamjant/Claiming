@@ -11,9 +11,9 @@ namespace Masasamjant.Claiming
         /// Initializes new instance of the <see cref="ClaimResponse"/> class.
         /// </summary>
         /// <param name="result">The <see cref="ClaimResult"/>.</param>
-        /// <param name="claim">The claim, if <paramref name="result"/> is <see cref="ClaimResult.Approved"/>; <c>null</c> otherwise.</param>
+        /// <param name="claim">The claim, if <paramref name="result"/> is approved or denied; <c>null</c> if not found.</param>
         /// <exception cref="ArgumentException">If value of <paramref name="result"/> is not defined in <see cref="ClaimResult"/>.</exception>
-        /// <exception cref="ArgumentNullException">If <paramref name="result"/> is <see cref="ClaimResult.Approved"/> and <paramref name="claim"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">If claim was approved or denied and <paramref name="claim"/> is <c>null</c>.</exception>
         public ClaimResponse(ClaimResult result, Claim? claim)
         {
             if (!Enum.IsDefined(result))
@@ -21,10 +21,12 @@ namespace Masasamjant.Claiming
 
             Result = result;
 
-            if (Result == ClaimResult.Approved)
+            if (Result == ClaimResult.Approved || Result == ClaimResult.Denied)
             {
                 if (claim == null)
-                    throw new ArgumentNullException(nameof(claim), "The claim must be specified if claim was approved.");
+                    throw new ArgumentNullException(nameof(claim), "The claim must be specified if claim was approved or denied.");
+
+                Claim = claim;
             }
             else
                 Claim = null;
@@ -43,7 +45,7 @@ namespace Masasamjant.Claiming
         public ClaimResult Result { get; internal set; }
 
         /// <summary>
-        /// Gets the claim, if <see cref="Result"/> is <see cref="ClaimResult.Approved"/>.
+        /// Gets the claim, if <see cref="Result"/> is <see cref="ClaimResult.Approved"/> or <see cref="ClaimResult.Denied"/>.
         /// </summary>
         [JsonInclude]
         public Claim? Claim { get; internal set; }
@@ -65,7 +67,7 @@ namespace Masasamjant.Claiming
         /// Creates <see cref="ClaimResponse"/> for <see cref="ClaimResult.Denied"/>.
         /// </summary>
         /// <returns>A <see cref="ClaimResponse"/> for <see cref="ClaimResult.Denied"/>.</returns>
-        public static ClaimResponse Denied() => new ClaimResponse(ClaimResult.Denied, null);
+        public static ClaimResponse Denied(Claim claim) => new ClaimResponse(ClaimResult.Denied, claim);
 
         IClaim? IClaimResponse.Claim => Claim;
     }

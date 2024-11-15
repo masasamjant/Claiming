@@ -164,7 +164,7 @@ namespace Masasamjant.Claiming.Memory
                         if (claim.OwnerIdentifier.Equals(request.OwnerIdentifier))
                             response = ClaimResponse.Approved(claim);
                         else
-                            response = ClaimResponse.Denied();
+                            response = ClaimResponse.Denied(claim);
 
                         return Task.FromResult(response);
                     }
