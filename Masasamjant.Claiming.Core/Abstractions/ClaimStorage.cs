@@ -10,6 +10,7 @@
         /// </summary>
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
         /// <returns>A <see cref="Claim"/> or <c>null</c>, if claim not exist.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<Claim?> GetClaimAsync(ClaimKey claimKey);
 
         /// <summary>
@@ -19,12 +20,14 @@
         /// <param name="claimIdentifier">The claim identifier.</param>
         /// <param name="ownerIdentifier">The optional identifier of claim owner.</param>
         /// <returns>A <see cref="Claim"/> or <c>null</c>, if claim not exist.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<Claim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier);
 
         /// <summary>
         /// Gets all claims.
         /// </summary>
         /// <returns>A <see cref="IEnumerable{Claim}"/> of all claims.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<IEnumerable<Claim>> GetClaimsAsync();
 
         /// <summary>
@@ -32,6 +35,7 @@
         /// </summary>
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
         /// <returns><c>true</c> if object instance specified by <paramref name="claimKey"/> is claimed; <c>false</c> otherwise.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<bool> IsClaimedAsync(ClaimKey claimKey);
 
         /// <summary>
@@ -39,6 +43,7 @@
         /// </summary>
         /// <param name="claim">The <see cref="Claim"/> to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<bool> ReleaseClaimAsync(Claim claim);
 
         /// <summary>
@@ -46,6 +51,7 @@
         /// </summary>
         /// <param name="request">The <see cref="ClaimRequest"/>.</param>
         /// <returns>A <see cref="ClaimResponse"/>.</returns>
+        /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<ClaimResponse> TryGetClaimAsync(ClaimRequest request);
     }
 }

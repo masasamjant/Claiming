@@ -27,10 +27,20 @@ namespace Masasamjant.Claiming
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         public override async Task<IClaim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier)
         {
-            if (claimIdentifier.Equals(Guid.Empty))
-                return null;
+            try
+            {
+                if (claimIdentifier.Equals(Guid.Empty))
+                    return null;
 
-            return await storage.GetClaimAsync(claimIdentifier, ownerIdentifier);
+                return await storage.GetClaimAsync(claimIdentifier, ownerIdentifier);
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException($"Unexpected exception when getting claim of '{claimIdentifier}'", exception);
+            }
         }
 
         /// <summary>
@@ -40,10 +50,20 @@ namespace Masasamjant.Claiming
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         public override async Task<IClaim?> GetClaimAsync(ClaimKey claimKey)
         {
-            if (claimKey.IsEmpty)
-                return null;
+            try
+            {
+                if (claimKey.IsEmpty)
+                    return null;
 
-            return await storage.GetClaimAsync(claimKey);
+                return await storage.GetClaimAsync(claimKey);
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException("Unexpected exception when getting claim using specified claim key.", claimKey, exception);
+            }
         }
 
         /// <summary>
@@ -52,7 +72,17 @@ namespace Masasamjant.Claiming
         /// <returns>A <see cref="IEnumerable{IClaim}"/> of all claims.</returns>
         public override async Task<IEnumerable<IClaim>> GetClaimsAsync()
         {
-            return await storage.GetClaimsAsync();
+            try
+            {
+                return await storage.GetClaimsAsync();
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException("Unexpected exception when getting claims.", exception);
+            }
         }
 
         /// <summary>
@@ -62,10 +92,20 @@ namespace Masasamjant.Claiming
         /// <returns><c>true</c> if object instance specified by <paramref name="claimKey"/> is claimed; <c>false</c> otherwise.</returns>
         public override async Task<bool> IsClaimedAsync(ClaimKey claimKey)
         {
-            if (claimKey.IsEmpty)
-                return false;
+            try
+            {
+                if (claimKey.IsEmpty)
+                    return false;
 
-            return await storage.IsClaimedAsync(claimKey);
+                return await storage.IsClaimedAsync(claimKey);
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException("Unexpected exception when using specified claim key.", claimKey, exception);
+            }
         }
 
         /// <summary>
@@ -75,10 +115,20 @@ namespace Masasamjant.Claiming
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
         public override async Task<bool> ReleaseClaimAsync(IClaim claim)
         {
-            if (claim.IsEmpty)
-                return false;
+            try
+            {
+                if (claim.IsEmpty)
+                    return false;
 
-            return await storage.ReleaseClaimAsync(GetClaim(claim));
+                return await storage.ReleaseClaimAsync(GetClaim(claim));
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException("Unexpected exception when releasing specified claim.", claim, exception);
+            }
         }
 
         /// <summary>
@@ -88,7 +138,17 @@ namespace Masasamjant.Claiming
         /// <returns>A <see cref="IClaimResponse"/>.</returns>
         public override async Task<IClaimResponse> TryClaimAsync(IClaimRequest request)
         {
-            return await storage.TryGetClaimAsync(GetClaimRequest(request));
+            try
+            {
+                return await storage.TryGetClaimAsync(GetClaimRequest(request));
+            }
+            catch (Exception exception)
+            {
+                if (exception is ClaimStorageException)
+                    throw;
+
+                throw new ClaimException("Unexpected exception when attempt to claim using specified claim key.", request.ClaimKey, exception);
+            }
         }
 
         /// <summary>
