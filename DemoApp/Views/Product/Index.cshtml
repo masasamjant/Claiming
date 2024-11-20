@@ -1,0 +1,25 @@
+﻿@model ProductsViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+<div>
+    <h1>Products</h1>
+    <a asp-area="" asp-action="Add" asp-controller="Product">Add</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@Html.ActionLink(product.Name, "Details", "Product", new { id = product.Identifier })</td>
+                    <td>@product.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

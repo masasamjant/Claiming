@@ -1,0 +1,37 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+<div class="text-center">
+    <h1 class="display-4">Edit User</h1>
+    @if (Model.ClaimDescriptor.IsDenied)
+    {
+        <div>
+            User '@Model.UserName' is under edit.
+        </div>
+        @if (Model.ShowRetryHyperlink)
+        {
+            <div>@Html.Raw(Model.GetRetryHyperlink("Retry edit"))</div>
+        }
+    }
+    else if (Model.ClaimDescriptor.IsApproved)
+    { 
+        <form asp-area="" asp-action="Edit" asp-controller="User" asp-antiforgery="true">
+            <div>
+                <label asp-for="FirstName">First name:</label>
+                <input asp-for="FirstName" />
+                <span asp-validation-for="FirstName" />
+            </div>
+            <div>
+                <label asp-for="LastName">Last name:</label>
+                <input asp-for="LastName" />
+                <span asp-validation-for="LastName" />
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+                <a asp-area="" asp-action="Details" asp-controller="User" asp-route-name="@Model.UserName">Cancel</a>
+            </div>
+            <input type="hidden" asp-for="UserName" />
+        </form>
+    }
+</div>

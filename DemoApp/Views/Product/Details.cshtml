@@ -1,0 +1,22 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = Model.Name;
+}
+<div>
+    <h1>Product</h1>
+    <a asp-asp-area="" asp-action="Edit" asp-asp-controller="Product" asp-route-id="@Model.Identifier">Edit</a>
+    <div>
+        <div>
+            <span>Identifier:</span>
+            <span>@Model.Identifier</span>
+        </div>
+        <div>
+            <span>Name:</span>
+            <span>@Model.Name</span>
+        </div>
+        <div>
+            <span>Description</span>
+            <span>@Model.Description</span>
+        </div>
+    </div>
+</div>

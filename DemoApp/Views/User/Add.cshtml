@@ -1,0 +1,28 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Add User";
+}
+<div class="text-center">
+    <h1 class="display-4">Add User</h1>
+    <form asp-area="" asp-action="Add" asp-controller="User" asp-antiforgery="true">
+        <div>
+            <label asp-for="UserName">User name:</label>
+            <input asp-for="UserName" />
+            <span asp-validation-for="UserName" />
+        </div>
+        <div>
+            <label asp-for="FirstName">First name:</label>
+            <input asp-for="FirstName" />
+            <span asp-validation-for="FirstName" />
+        </div>
+        <div>
+            <label asp-for="LastName">Last name:</label>
+            <input asp-for="LastName" />
+            <span asp-validation-for="LastName" />
+        </div>
+        <div>
+            <input type="submit" value="Add" />
+            <a asp-area="" asp-action="Index" asp-controller="User">Cancel</a>
+        </div>
+    </form>
+</div>

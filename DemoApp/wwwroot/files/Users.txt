@@ -1,0 +1,6 @@
+﻿# Initial users loaded to repository. 
+# Format: "user name;first name;last name".
+ken;Ken;Mallory
+jen;Jen;Evans
+mark;Mark;Hamilton
+wendy;Wendy;Williams

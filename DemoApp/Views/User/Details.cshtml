@@ -1,0 +1,22 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "User";
+}
+<div class="text-center">
+    <h1 class="display-4">User</h1>
+    <a asp-area="" asp-action="Edit" asp-controller="User" asp-route-name="@Model.UserName">Edit</a>
+    <div>
+        <div>
+            <span>User name:</span>
+            <span>@Model.UserName</span>
+        </div>
+        <div>
+            <span>First name:</span>
+            <span>@Model.FirstName</span>
+        </div>
+        <div>
+            <span>Last name:</span>
+            <span>@Model.LastName</span>
+        </div>
+    </div>
+</div>

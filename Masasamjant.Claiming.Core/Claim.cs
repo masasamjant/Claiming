@@ -100,5 +100,36 @@ namespace Masasamjant.Claiming
         {
             return ExpiresAt <= datetime;
         }
+
+        /// <summary>
+        /// Check if object instance is <see cref="Claim"/> and equal to this.
+        /// </summary>
+        /// <param name="obj">The object instance.</param>
+        /// <returns><c>true</c> <paramref name="obj"/> is <see cref="Claim"/> and equal to this; <c>false</c> otherwise.</returns>
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as Claim);
+        }
+
+        /// <summary>
+        /// Gets hash code.
+        /// </summary>
+        /// <returns>A hash code.</returns>
+        public override int GetHashCode()
+        {
+            if (IsEmpty)
+                return 0;
+
+            return HashCode.Combine(ClaimIdentifier, OwnerIdentifier, ClaimKey, ExpiresAt);
+        }
+
+        private bool Equals(Claim? other)
+        {
+            return other != null && ((IsEmpty && other.IsEmpty) ||
+                (ClaimIdentifier == other.ClaimIdentifier &&
+                OwnerIdentifier == other.OwnerIdentifier &&
+                ClaimKey.Equals(other.ClaimKey) &&
+                ExpiresAt == other.ExpiresAt));
+        }
     }
 }

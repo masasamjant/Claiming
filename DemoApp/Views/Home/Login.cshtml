@@ -1,0 +1,18 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div>
+    <h1>Login</h1>
+    <form asp-area="" asp-action="Login" asp-controller="Home" asp-antiforgery="true">
+        <div>
+            <label asp-for="UserName">User name:</label>
+            <input asp-for="UserName" />
+            <span asp-validation-for="UserName" />
+        </div>
+        <div>
+            <input type="submit" value="Login" />
+        </div>
+        <input type="hidden" asp-for="RedirectUrl" />
+    </form>
+</div>

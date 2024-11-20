@@ -1,0 +1,5 @@
+﻿# Initial products loaded to repository. 
+# Format: "name;description".
+Audi A3;Audi A3
+Volkswagen Passat;Volkswagen Passat
+Nissan Micra;Nissan Micra

@@ -1,0 +1,23 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Add Product";
+}
+<div>
+    <h1>Add Product</h1>
+    <form asp-area="" asp-action="Add" asp-controller="Product" asp-antiforgery="true">
+        <div>
+            <label asp-for="Name">Name:</label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" />
+        </div>
+        <div>
+            <label asp-for="Description">Description:</label>
+            <input asp-for="Description" />
+            <span asp-validation-for="Description" />
+        </div>
+        <div>
+            <input type="submit" value="Add" />
+            <a asp-area="" asp-action="Index" asp-controller="Product">Cancel</a>
+        </div>
+    </form>
+</div>
