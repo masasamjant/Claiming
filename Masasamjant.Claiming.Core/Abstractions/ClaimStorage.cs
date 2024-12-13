@@ -53,5 +53,23 @@
         /// <returns>A <see cref="ClaimResponse"/>.</returns>
         /// <exception cref="ClaimStorageException">If exception occurs.</exception>
         public abstract Task<ClaimResponse> TryGetClaimAsync(ClaimRequest request);
+
+        /// <summary>
+        /// Gets current <see cref="DateTimeOffset"/> of specified time type.
+        /// </summary>
+        /// <param name="kind">The <see cref="DateTimeKind"/>.</param>
+        /// <returns>
+        /// A <see cref="DateTimeOffset.UtcNow"/> if value of <paramref name="kind"/> is <see cref="DateTimeKind.Utc"/>.
+        /// -or-
+        /// Otherwise <see cref="DateTimeOffset.Now"/>.
+        /// </returns>
+        /// <exception cref="ArgumentException">If value of <paramref name="kind"/> is not defined in <see cref="DateTimeKind"/>.</exception>
+        protected static DateTimeOffset GetDateTime(DateTimeKind kind)
+        {
+            if (!Enum.IsDefined(kind))
+                throw new ArgumentException("The value is not defined.", nameof(kind));
+
+            return kind == DateTimeKind.Utc ? DateTimeOffset.UtcNow : DateTimeOffset.Now;
+        }
     }
 }

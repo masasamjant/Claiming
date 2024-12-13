@@ -1,0 +1,15 @@
+{
+  "Masasamjant": {
+    "Claiming": {
+      "ConnectionString": "Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;",
+      "CommandTimeout": 30,
+      "Schema": {
+        "SchemaName": "Claims",
+        "TableName": "EntityClaim",
+        "OwnerIdentifierMaxLength": 128,
+        "TypeNameMaxLength": 256,
+        "InstanceIdentifierMaxLength": 256
+      }
+    }
+  }
+}

@@ -74,5 +74,13 @@ namespace Masasamjant.Claiming
         /// </summary>
         [JsonInclude]
         public int LifeTimeMinutes { get; internal set; } = Claims.DefaultClaimLifeTimeMinutes;
+
+        /// <summary>
+        /// Gets or sets what date time kind should be used. 
+        /// Default is <see cref="DateTimeKind.Local"/>.
+        /// </summary>
+        /// <remarks>If <see cref="DateTimeKind.Unspecified"/>, then <see cref="DateTimeKind.Local"/> is used.</remarks>
+        [JsonInclude]
+        public DateTimeKind DateTimeKind { get; set; } = DateTimeKind.Local;
     }
 }

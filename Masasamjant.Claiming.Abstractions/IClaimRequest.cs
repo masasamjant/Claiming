@@ -19,5 +19,12 @@
         /// Gets the claim life time in minutes.
         /// </summary>
         int LifeTimeMinutes { get; }
+
+        /// <summary>
+        /// Gets what date time kind should be used. 
+        /// Default is <see cref="DateTimeKind.Local"/>.
+        /// </summary>
+        /// <remarks>If <see cref="DateTimeKind.Unspecified"/>, then <see cref="DateTimeKind.Local"/> is used.</remarks>
+        DateTimeKind DateTimeKind { get; }
     }
 }

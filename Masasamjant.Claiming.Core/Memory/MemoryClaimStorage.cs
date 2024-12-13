@@ -213,7 +213,7 @@ namespace Masasamjant.Claiming.Memory
                         }
                     }
 
-                    var expires = DateTimeOffset.Now.AddMinutes(request.LifeTimeMinutes);
+                    var expires = GetDateTime(request.DateTimeKind).AddMinutes(request.LifeTimeMinutes);
                     claim = new Claim(Guid.NewGuid(), request.OwnerIdentifier, request.ClaimKey, expires);
                     claims[request.ClaimKey] = claim;
                     lookup.Add(claim.ClaimIdentifier);
