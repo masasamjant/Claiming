@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp\DemoApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.EntityFramework", "Masasamjant.Claiming.EntityFramework\Masasamjant.Claiming.EntityFramework.csproj", "{90D4E096-586C-45C0-928C-7E468911FE6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Http", "Masasamjant.Claiming.Http\Masasamjant.Claiming.Http.csproj", "{8F140F2B-4BBF-4484-B774-54C4C1789D73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{90D4E096-586C-45C0-928C-7E468911FE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90D4E096-586C-45C0-928C-7E468911FE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90D4E096-586C-45C0-928C-7E468911FE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F140F2B-4BBF-4484-B774-54C4C1789D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F140F2B-4BBF-4484-B774-54C4C1789D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F140F2B-4BBF-4484-B774-54C4C1789D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F140F2B-4BBF-4484-B774-54C4C1789D73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{61BD2714-4F4D-44AA-A15A-E2FD3C409D12} = {EB362616-53B3-459F-A945-842549B44FF5}
 		{84AE3EB1-2ED6-4761-9034-5CB2F4047DA6} = {4EF923BF-C8CF-477F-9896-F71E31D25F07}
 		{90D4E096-586C-45C0-928C-7E468911FE6A} = {EB362616-53B3-459F-A945-842549B44FF5}
+		{8F140F2B-4BBF-4484-B774-54C4C1789D73} = {EB362616-53B3-459F-A945-842549B44FF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BE458A5-7275-4BAF-BE23-E5A7AA9C705F}
