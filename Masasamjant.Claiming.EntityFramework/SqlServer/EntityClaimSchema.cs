@@ -2,13 +2,14 @@
 {
     internal sealed class EntityClaimSchema
     {
-        public EntityClaimSchema(string schemaName, string tableName, int ownerIdentifierMaxLength, int typeNameMaxLength, int instanceIdentifierMaxLength)
+        public EntityClaimSchema(string schemaName, string tableName, int ownerIdentifierMaxLength, int typeNameMaxLength, int instanceIdentifierMaxLength, int applicationMaxLength)
         {
             SchemaName = schemaName;
             TableName = tableName;
             OwnerIdentifierMaxLength = ownerIdentifierMaxLength;
             TypeNameMaxLength = typeNameMaxLength;
             InstanceIdentifierMaxLength = instanceIdentifierMaxLength;
+            ApplicationMaxLength = applicationMaxLength;
         }
 
         public string SchemaName { get; }
@@ -21,6 +22,8 @@
 
         public int InstanceIdentifierMaxLength { get; }
 
-        public static EntityClaimSchema Default { get; } = new EntityClaimSchema("Claims", "EntityClaim", 128, 256, 256);
+        public int ApplicationMaxLength { get; }
+
+        public static EntityClaimSchema Default { get; } = new EntityClaimSchema("Claims", "EntityClaim", 128, 256, 256, 128);
     }
 }

@@ -12,8 +12,8 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="assemblyQualifiedTypeName">The assembly qualified name of type of object instance.</param>
         /// <param name="instanceIdentifier">The unique identifier to identify object instance in claiming.</param>
-        /// <exception cref="ArgumentNullException">If <paramref name="assemblyQualifiedTypeName"/> or <paramref name="instanceIdentifier"/> is empty or contains only whitespace characters.</exception>
-        public ClaimKey(string assemblyQualifiedTypeName, string instanceIdentifier)
+        /// <exception cref="ArgumentNullException">If <paramref name="assemblyQualifiedTypeName"/>, <paramref name="instanceIdentifier"/> or <paramref name="application"/> is empty or contains only whitespace characters.</exception>
+        public ClaimKey(string assemblyQualifiedTypeName, string instanceIdentifier, string application)
         {
             if (string.IsNullOrWhiteSpace(assemblyQualifiedTypeName))
                 throw new ArgumentNullException(nameof(assemblyQualifiedTypeName), "The assembly qualitifed type name cannot be empty or only whitespace characters.");
@@ -21,8 +21,12 @@ namespace Masasamjant.Claiming
             if (string.IsNullOrWhiteSpace(instanceIdentifier))
                 throw new ArgumentNullException(nameof(instanceIdentifier), "The instance identifier cannot be empty or only whitespace characters.");
 
+            if (string.IsNullOrWhiteSpace(application))
+                throw new ArgumentNullException(nameof(application), "The application name cannot be empty or only whitespace characters.");
+
             AssemblyQualifiedTypeName = assemblyQualifiedTypeName;
             InstanceIdentifier = instanceIdentifier;
+            Application = application;
         }
 
         /// <summary>
@@ -30,16 +34,20 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="instance">The object instance to claim.</param>
         /// <param name="instanceIdentifier">The unique identifier to identify object instance in claiming.</param>
-        /// <exception cref="ArgumentNullException">If <paramref name="instanceIdentifier"/> is empty or contains only whitespace characters.</exception>
+        /// <exception cref="ArgumentNullException">If <paramref name="instanceIdentifier"/> or <paramref name="application"/> is empty or contains only whitespace characters.</exception>
         /// <exception cref="ArgumentException">If <paramref name="instance"/> does not have assembly qualified name aka it represents generic type parameter.</exception>
-        public ClaimKey(object instance, string instanceIdentifier)
+        public ClaimKey(object instance, string instanceIdentifier, string application)
         {
             if (string.IsNullOrWhiteSpace(instanceIdentifier))
                 throw new ArgumentNullException(nameof(instanceIdentifier), "The instance identifier cannot be empty or only whitespace characters.");
 
+            if (string.IsNullOrWhiteSpace(application))
+                throw new ArgumentNullException(nameof(application), "The application name cannot be empty or only whitespace characters.");
+
             AssemblyQualifiedTypeName = instance.GetType().AssemblyQualifiedName
                 ?? throw new ArgumentException("The type of instance does not have assembly qualified name.", nameof(instance));
             InstanceIdentifier = instanceIdentifier;
+            Application = application;
         }
 
         /// <summary>
@@ -60,6 +68,12 @@ namespace Masasamjant.Claiming
         /// </summary>
         [JsonInclude]
         public string AssemblyQualifiedTypeName { get; internal set; } = string.Empty;
+
+        /// <summary>
+        /// Gets the name of the application.
+        /// </summary>
+        [JsonInclude]
+        public string Application { get; internal set; } = string.Empty;
 
         /// <summary>
         /// Gets if this represents empty claim key.
@@ -83,7 +97,8 @@ namespace Masasamjant.Claiming
         {
             return other != null && ((IsEmpty && other.IsEmpty) || 
                 (string.Equals(InstanceIdentifier, other.InstanceIdentifier, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(AssemblyQualifiedTypeName, other.AssemblyQualifiedTypeName, StringComparison.Ordinal)));
+                string.Equals(AssemblyQualifiedTypeName, other.AssemblyQualifiedTypeName, StringComparison.Ordinal) &&
+                string.Equals(Application, other.Application, StringComparison.OrdinalIgnoreCase)));
         }
 
         /// <summary>
@@ -102,7 +117,7 @@ namespace Masasamjant.Claiming
         /// <returns>A hash code.</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(InstanceIdentifier, AssemblyQualifiedTypeName);
+            return HashCode.Combine(InstanceIdentifier, AssemblyQualifiedTypeName, Application);
         }
     }
 }

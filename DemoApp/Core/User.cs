@@ -22,7 +22,7 @@ namespace DemoApp.Core
 
         public ClaimKey GetClaimKey()
         {
-            return new ClaimKey(this, UserName);
+            return new ClaimKey(this, UserName, "DemoApp");
         }
 
         public bool Equals(User? other)

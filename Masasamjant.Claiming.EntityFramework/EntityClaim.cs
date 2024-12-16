@@ -23,6 +23,7 @@
         {
             AssemblyQualifiedTypeName = claimKey.AssemblyQualifiedTypeName;
             InstanceIdentifier = claimKey.InstanceIdentifier;
+            Application = claimKey.Application;
         }
 
         /// <summary>
@@ -44,13 +45,18 @@
         public string InstanceIdentifier { get; protected set; } = string.Empty;
 
         /// <summary>
+        /// Gets the name of application.
+        /// </summary>
+        public string Application { get;protected set; } = string.Empty;
+
+        /// <summary>
         /// Prepares entity claim instance by assigning claim key 
         /// from <see cref="AssemblyQualifiedTypeName"/> and <see cref="InstanceIdentifier"/>.
         /// </summary>
         public void Prepare()
         {
             if (ClaimKey.IsEmpty)
-                ClaimKey = new ClaimKey(InstanceIdentifier, AssemblyQualifiedTypeName);
+                ClaimKey = new ClaimKey(InstanceIdentifier, AssemblyQualifiedTypeName, Application);
         }
     }
 }

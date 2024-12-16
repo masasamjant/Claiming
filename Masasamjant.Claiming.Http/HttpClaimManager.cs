@@ -56,7 +56,8 @@ namespace Masasamjant.Claiming.Http
             {
                 var sb = new StringBuilder(Routes.GetClaimByKeyRoute);
                 sb.Append($"?instanceIdentifier={claimKey.InstanceIdentifier}");
-                sb.Append($"?name={claimKey.AssemblyQualifiedTypeName}");
+                sb.Append($"&type={claimKey.AssemblyQualifiedTypeName}");
+                sb.Append($"&app={claimKey.Application}");
 
                 var claim = await httpClient.GetFromJsonAsync<Claim>(sb.ToString());
 
@@ -91,7 +92,8 @@ namespace Masasamjant.Claiming.Http
             {
                 var sb = new StringBuilder(Routes.IsClaimedRoute);
                 sb.Append($"?instanceIdentifier={claimKey.InstanceIdentifier}");
-                sb.Append($"?name={claimKey.AssemblyQualifiedTypeName}");
+                sb.Append($"&type={claimKey.AssemblyQualifiedTypeName}");
+                sb.Append($"&app={claimKey.Application}");
 
                 var exist = await httpClient.GetFromJsonAsync<bool>(sb.ToString());
 

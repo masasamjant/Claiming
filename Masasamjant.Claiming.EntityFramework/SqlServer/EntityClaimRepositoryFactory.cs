@@ -42,7 +42,8 @@ namespace Masasamjant.Claiming.SqlServer
             var ownerIdentifierMaxLength = ParseMaxLength(section[nameof(EntityClaimSchema.OwnerIdentifierMaxLength)], defaultSchema.OwnerIdentifierMaxLength);
             var typeNameMaxLength = ParseMaxLength(section[nameof(EntityClaimSchema.TypeNameMaxLength)], defaultSchema.TypeNameMaxLength);
             var instanceIdentifierMaxLength = ParseMaxLength(section[nameof(EntityClaimSchema.InstanceIdentifierMaxLength)], defaultSchema.InstanceIdentifierMaxLength);
-            return new EntityClaimSchema(schemaName, tableName, ownerIdentifierMaxLength, typeNameMaxLength, instanceIdentifierMaxLength);
+            var applicationMaxLength = ParseMaxLength(section[nameof(EntityClaimSchema.ApplicationMaxLength)], defaultSchema.ApplicationMaxLength);
+            return new EntityClaimSchema(schemaName, tableName, ownerIdentifierMaxLength, typeNameMaxLength, instanceIdentifierMaxLength, applicationMaxLength);
         }
 
         private static int ParseMaxLength(string? value, int defaultValue)

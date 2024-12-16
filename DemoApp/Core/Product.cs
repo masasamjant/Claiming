@@ -37,7 +37,7 @@ namespace DemoApp.Core
 
         public ClaimKey GetClaimKey()
         {
-            return new ClaimKey(this, Identifier.ToString());
+            return new ClaimKey(this, Identifier.ToString(), "DemoApp");
         }
 
         public override string ToString()
