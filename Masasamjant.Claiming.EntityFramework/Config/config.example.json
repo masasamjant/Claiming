@@ -1,6 +1,11 @@
 {
   "Masasamjant": {
     "Claiming": {
+      "Manager": {
+        "Type": "EntityManager",
+        "ClaimLifeTime": 30,
+        "Instance": "Singleton" /* Transient */
+      },
       "ConnectionString": "Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;",
       "CommandTimeout": 30,
       "Schema": {

@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Masasamjant.Claiming.Core\Masasamjant.Claiming.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config\config.example.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

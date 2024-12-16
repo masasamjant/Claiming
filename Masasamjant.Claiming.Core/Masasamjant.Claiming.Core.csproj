@@ -11,4 +11,10 @@
     <ProjectReference Include="..\Masasamjant.Claiming.Abstractions\Masasamjant.Claiming.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config\config.example.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

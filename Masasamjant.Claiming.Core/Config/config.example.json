@@ -1,0 +1,11 @@
+{
+  "Masasamjant": {
+    "Claiming": {
+      "Manager": {
+        "Type": "MemoryManager",
+        "ClaimLifeTime": 30,
+        "Instance": "Singleton" /* Transient */
+      }
+    }
+  }
+}
