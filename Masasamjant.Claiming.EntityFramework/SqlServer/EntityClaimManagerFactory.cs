@@ -14,7 +14,7 @@ namespace Masasamjant.Claiming.SqlServer
         /// <summary>
         /// Gets the manager type string.
         /// </summary>
-        protected override string ManagerType => "EntityManager";
+        protected override string ManagerType => "EntityClaimManager";
 
         /// <summary>
         /// Gets the singleton <see cref="StorageClaimManager"/> instance with <see cref="EntityClaimStorage"/>.

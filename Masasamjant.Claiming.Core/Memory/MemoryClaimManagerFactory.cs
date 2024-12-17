@@ -14,7 +14,7 @@ namespace Masasamjant.Claiming.Memory
         /// <summary>
         /// Gets the manager type string.
         /// </summary>
-        protected override string ManagerType => "MemoryManager";
+        protected override string ManagerType => "MemoryClaimManager";
 
         /// <summary>
         /// Gets the singleton <see cref="StorageClaimManager"/> instance with <see cref="MemoryClaimStorage"/>.

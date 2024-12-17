@@ -17,8 +17,13 @@ namespace Masasamjant.Claiming.Http
         /// </summary>
         /// <param name="httpClientFactory">The <see cref="IHttpClientFactory"/>.</param>
         /// <param name="baseAddress">The base address.</param>
+        /// <exception cref="ArgumentNullException">If value of <paramref name="baseAddress"/> is empty or contains only whitespace characters.</exception>
+        /// <exception cref="UriFormatException">If the format of value of <paramref name="baseAddress"/> is not valid.</exception>
         public HttpClaimManager(IHttpClientFactory httpClientFactory, string baseAddress)
         {
+            if (string.IsNullOrWhiteSpace(baseAddress))
+                throw new ArgumentNullException(nameof(baseAddress), "The base address cannot be empty or contain only whitespace characters.");
+
             httpClient = httpClientFactory.CreateClient();
             httpClient.BaseAddress = new Uri(baseAddress);
             httpClient.DefaultRequestHeaders.Accept.Clear();
