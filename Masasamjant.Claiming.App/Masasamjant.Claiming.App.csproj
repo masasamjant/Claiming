@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\files\Users.txt">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Masasamjant.Claiming\Masasamjant.Claiming.csproj" />
+    <ProjectReference Include="..\Masasamjant.Claiming.EntityFramework\Masasamjant.Claiming.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

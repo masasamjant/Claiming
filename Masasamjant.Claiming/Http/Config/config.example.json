@@ -1,0 +1,18 @@
+{
+  "Masasamjant": {
+    "Claiming": {
+      "Manager": {
+        "Type": "HttpClaimManager",
+        "ClaimLifeTime": 30,
+        "Instance": "Singleton" /* Transient */
+      },
+      "ClientPurpose": "Claims",
+      "Api": {
+        "Header": "API-KEY-HEADER",
+        "Key": "API-KEY-VALUE",
+        "Checksum": "API-CHECKSUM-HEADER"
+      }
+    }
+    }
+  }
+}
