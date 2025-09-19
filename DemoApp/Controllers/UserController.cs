@@ -55,18 +55,16 @@ namespace DemoApp.Controllers
             // Try claim "user" to current application user.
             var claimDescriptor = await service.TryClaimAsync(user, GetSessionUser());
 
-            if (claimDescriptor.Claim == null || claimDescriptor.IsNotFound)
+            if (claimDescriptor.IsEmpty || claimDescriptor.IsNotFound)
                 return RedirectToAction("Index", "User");
 
-            var viewModel = new UserViewModel()
+            var viewModel = new UserViewModel
             {
                 UserName = user.UserName,
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
+                ClaimDescriptor = claimDescriptor
             };
-
-            viewModel.ClaimDescriptor.Result = claimDescriptor.Result;
-            viewModel.ClaimDescriptor.Claim = claimDescriptor.Claim;
 
             return View(viewModel);
         }
@@ -101,13 +99,12 @@ namespace DemoApp.Controllers
             // Get claim
             var claimDescriptor = await service.TryClaimAsync(user, GetSessionUser());
 
-            if (claimDescriptor.Claim == null || claimDescriptor.IsNotFound)
+            if (claimDescriptor.IsEmpty || claimDescriptor.IsNotFound)
                 return RedirectToAction("Index", "User");
 
             if (!claimDescriptor.IsDenied)
             {
-                model.ClaimDescriptor.Result = claimDescriptor.Result;
-                model.ClaimDescriptor.Claim = claimDescriptor.Claim;
+                model.ClaimDescriptor = claimDescriptor;
                 return View(model);
             }
 

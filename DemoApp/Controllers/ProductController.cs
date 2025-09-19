@@ -55,7 +55,7 @@ namespace DemoApp.Controllers
 
             var claimDescriptor = await service.TryClaimAsync(product, GetSessionUser());
 
-            if (claimDescriptor.Claim == null || claimDescriptor.IsNotFound)
+            if (claimDescriptor.IsEmpty || claimDescriptor.IsNotFound)
                 return RedirectToAction("Index", "Product");
 
             var viewModel = new ProductViewModel()
@@ -65,8 +65,7 @@ namespace DemoApp.Controllers
                 Description = product.Description
             };
 
-            viewModel.ClaimDescriptor.Result = claimDescriptor.Result;
-            viewModel.ClaimDescriptor.Claim = claimDescriptor.Claim;
+            viewModel.ClaimDescriptor = claimDescriptor;
 
             return View(viewModel);
         }
@@ -100,13 +99,12 @@ namespace DemoApp.Controllers
 
             var claimDescriptor = await service.TryClaimAsync(product, GetSessionUser());
 
-            if (claimDescriptor.Claim == null || claimDescriptor.IsNotFound)
+            if (claimDescriptor.IsEmpty || claimDescriptor.IsNotFound)
                 return RedirectToAction("Index", "Product");
 
             if (!claimDescriptor.IsDenied)
             {
-                model.ClaimDescriptor.Result = claimDescriptor.Result;
-                model.ClaimDescriptor.Claim = claimDescriptor.Claim;
+                model.ClaimDescriptor = claimDescriptor;
                 return View(model);
             }
 

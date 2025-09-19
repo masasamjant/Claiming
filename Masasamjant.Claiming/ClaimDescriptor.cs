@@ -15,7 +15,15 @@ namespace Masasamjant.Claiming
         public ClaimDescriptor(ClaimResult result, IClaim? claim)
         {
             Result = result;
-            Claim = claim;
+            
+            if (claim != null)
+            {
+                ClaimIdentifier = claim.ClaimIdentifier;
+                OwnerIdentifier = claim.OwnerIdentifier;
+                ClaimKey = claim.ClaimKey;
+                ExpiresAt = claim.ExpiresAt;
+                IsEmpty = claim.IsEmpty;
+            }
         }
 
         /// <summary>
@@ -31,22 +39,42 @@ namespace Masasamjant.Claiming
         public ClaimResult Result { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="IClaim"/> or <c>null</c>.
+        /// Gets the unique identifer of the claim.
         /// </summary>
-        [JsonInclude]
-        public IClaim? Claim { get; set; }
+        public Guid ClaimIdentifier { get; internal set; }
+
+        /// <summary>
+        /// Gets the unique identifer of user who owns the claim.
+        /// </summary>
+        public string OwnerIdentifier { get; internal set; } = string.Empty;
+
+        /// <summary>
+        /// Gets the claim key to identify claimed object instance.
+        /// </summary>
+        public ClaimKey ClaimKey { get; internal set; } = new ClaimKey();
+
+        /// <summary>
+        /// Gets the date and time when claim expires.
+        /// </summary>
+        public DateTimeOffset ExpiresAt { get; internal set; }
+
+        /// <summary>
+        /// Gets whether or not claim is empty. Empty claim is missing some information of
+        /// <see cref="ClaimIdentifier"/>, <see cref="OwnerIdentifier"/> or <see cref="ClaimKey"/>.
+        /// </summary>
+        public bool IsEmpty { get; internal set; } = true;
 
         /// <summary>
         /// Gets whether or not describes claimed claim.
         /// </summary>
         [JsonIgnore]
-        public bool IsClaimed => Result != ClaimResult.NotFound && Claim != null && !Claim.IsEmpty;
+        public bool IsClaimed => Result != ClaimResult.NotFound && !IsEmpty;
 
         /// <summary>
         /// Gets whether or not describes approved claim.
         /// </summary>
         [JsonIgnore]
-        public bool IsApproved => Result == ClaimResult.Approved && Claim != null && !Claim.IsEmpty;
+        public bool IsApproved => Result == ClaimResult.Approved && !IsEmpty;
 
         /// <summary>
         /// Gets whether or not decribes denied claim.

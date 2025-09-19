@@ -3,17 +3,12 @@
     /// <summary>
     /// Describes the claim.
     /// </summary>
-    public interface IClaimDescriptor
+    public interface IClaimDescriptor : IClaim
     {
         /// <summary>
         /// Gets the <see cref="ClaimResult"/> or <c>null</c>.
         /// </summary>
         ClaimResult Result { get; }
-
-        /// <summary>
-        /// Gets the <see cref="IClaim"/> or <c>null</c>.
-        /// </summary>
-        IClaim? Claim { get; }
 
         /// <summary>
         /// Gets whether or not describes claimed claim.

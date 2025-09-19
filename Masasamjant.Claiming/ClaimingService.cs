@@ -94,10 +94,7 @@
             if (!claimDescriptor.IsClaimed || !claimDescriptor.IsApproved)
                 return false;
 
-            if (claimDescriptor.Claim == null)
-                return false;
-
-            return await ClaimManager.ReleaseClaimAsync(claimDescriptor.Claim);
+            return await ClaimManager.ReleaseClaimAsync(claimDescriptor);
         }
     }
 }
