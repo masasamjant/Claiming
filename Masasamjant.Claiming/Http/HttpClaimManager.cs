@@ -80,7 +80,7 @@ namespace Masasamjant.Claiming.Http
             try
             {
                 var request = new HttpGetRequest(Routes.GetClaimByKeyRoute);
-                AddClaimKeyParameters(request, claimKey);
+                claimKey.AddHttpParameters(request);
 
                 AddApiKeyHeader(request);
 
@@ -130,7 +130,7 @@ namespace Masasamjant.Claiming.Http
             try
             {
                 var request = new HttpGetRequest(Routes.IsClaimedRoute);
-                AddClaimKeyParameters(request, claimKey);
+                claimKey.AddHttpParameters(request);
                 AddApiKeyHeader(request);
 
                 var exist = await HttpClient.GetAsync<bool>(request);
@@ -221,11 +221,11 @@ namespace Masasamjant.Claiming.Http
                 request.Headers.Add(configuration.ApiKeyHeader, configuration.ApiKey);
         }
 
-        private static void AddClaimKeyParameters(HttpGetRequest request, ClaimKey claimKey)
-        {
-            request.Parameters.Add(ClaimKey.InstanceIdentifierParameter, claimKey.InstanceIdentifier);
-            request.Parameters.Add(ClaimKey.TypeNameParameter, claimKey.AssemblyQualifiedTypeName);
-            request.Parameters.Add(ClaimKey.ApplicationParameter, claimKey.Application);
-        }
+        //private static void AddClaimKeyParameters(HttpGetRequest request, ClaimKey claimKey)
+        //{
+        //    request.Parameters.Add(ClaimKey.InstanceIdentifierParameter, claimKey.InstanceIdentifier);
+        //    request.Parameters.Add(ClaimKey.TypeNameParameter, claimKey.AssemblyQualifiedTypeName);
+        //    request.Parameters.Add(ClaimKey.ApplicationParameter, claimKey.Application);
+        //}
     }
 }

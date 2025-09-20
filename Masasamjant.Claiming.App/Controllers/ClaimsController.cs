@@ -3,11 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Masasamjant.Claiming.App.Controllers
 {
+    /// <summary>
+    /// Controller to manage claims thru HTTP API.
+    /// </summary>
     [ApiController]
     public class ClaimsController : ControllerBase
     {
         private readonly IClaimManager claimManager;
 
+        /// <summary>
+        /// Initializes new instance of the <see cref="ClaimsController"/> class.
+        /// </summary>
+        /// <param name="claimManagerFactory">The <see cref="IClaimManagerFactory"/>.</param>
+        /// <param name="configuration">The <see cref="IConfiguration"/>.</param>
         public ClaimsController(IClaimManagerFactory claimManagerFactory, IConfiguration configuration)
         {
             claimManager = claimManagerFactory.CreateClaimManager(configuration);

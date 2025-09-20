@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Masasamjant.Http;
+using System.Text.Json.Serialization;
 
 namespace Masasamjant.Claiming
 {
@@ -7,12 +8,6 @@ namespace Masasamjant.Claiming
     /// </summary>
     public sealed class ClaimKey : IEquatable<ClaimKey>
     {
-        internal const string InstanceIdentifierParameter = "instance";
-
-        internal const string TypeNameParameter = "type";
-
-        internal const string ApplicationParameter = "app";
-
         /// <summary>
         /// Initializes new instance of the <see cref="ClaimKey"/> class.
         /// </summary>

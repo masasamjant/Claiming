@@ -24,13 +24,13 @@ namespace Masasamjant.Claiming
                 var type = managerSection["Type"];
                 if (!string.Equals(type, ManagerType, StringComparison.Ordinal))
                     throw new InvalidOperationException($"The manager configuration is not for {ManagerType} claim manager.");
-                var claimLifeTime = int.TryParse(managerSection["ClaimLifeTime"], out var result) && result > 0 ? result : Claims.DefaultClaimLifeTimeMinutes;
+                var claimLifeTimeMinutes = int.TryParse(managerSection["ClaimLifeTime"], out var result) && result > 0 ? result : Claims.DefaultClaimLifeTimeMinutes;
                 var managerInstance = Enum.TryParse(managerSection["Instance"], true, out ClaimManagerInstance instance) ? instance : ClaimManagerInstance.Singleton;
 
                 if (managerInstance == ClaimManagerInstance.Singleton)
-                    return GetSingletonInstance(configuration, claimLifeTime);
+                    return GetSingletonInstance(configuration, claimLifeTimeMinutes);
                 else
-                    return CreateInstance(configuration, claimLifeTime);
+                    return CreateInstance(configuration, claimLifeTimeMinutes);
             }
             catch (Exception exception)
             {
@@ -47,16 +47,16 @@ namespace Masasamjant.Claiming
         /// Gets the singleton <typeparamref name="TManager"/> instance.
         /// </summary>
         /// <param name="configuration">The <see cref="IConfiguration"/>.</param>
-        /// <param name="claimLifeTime">The claim life time in minutes.</param>
+        /// <param name="claimLifeTimeMinutes">The claim life time in minutes.</param>
         /// <returns>A singleton <typeparamref name="TManager"/> instance.</returns>
-        protected abstract TManager GetSingletonInstance(IConfiguration configuration, int claimLifeTime);
+        protected abstract TManager GetSingletonInstance(IConfiguration configuration, int claimLifeTimeMinutes);
 
         /// <summary>
         /// Creates new <typeparamref name="TManager"/> instance.
         /// </summary>
         /// <param name="configuration">The <see cref="IConfiguration"/>.</param>
-        /// <param name="claimLifeTime">The claim life time in minutes.</param>
+        /// <param name="claimLifeTimeMinutes">The claim life time in minutes.</param>
         /// <returns>A new <typeparamref name="TManager"/> instance.</returns>
-        protected abstract TManager CreateInstance(IConfiguration configuration, int claimLifeTime);
+        protected abstract TManager CreateInstance(IConfiguration configuration, int claimLifeTimeMinutes);
     }
 }
