@@ -1,4 +1,6 @@
-﻿namespace Masasamjant.Claiming
+﻿using Microsoft.Extensions.Configuration;
+
+namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents abstract service that supports claiming.
@@ -8,10 +10,11 @@
         /// <summary>
         /// Initializes new instance of the <see cref="ClaimingService"/> class.
         /// </summary>
-        /// <param name="claimManager">The <see cref="IClaimManager"/>.</param>
-        protected ClaimingService(IClaimManager claimManager) 
+        /// <param name="claimManagerFactory">The <see cref="IClaimManagerFactory"/>.</param>
+        /// <param name="configuration">The <see cref="IConfiguration"/>.</param>
+        protected ClaimingService(IClaimManagerFactory claimManagerFactory, IConfiguration configuration) 
         {
-            ClaimManager = claimManager;
+            ClaimManager = claimManagerFactory.CreateClaimManager(configuration);
         }
 
         /// <summary>

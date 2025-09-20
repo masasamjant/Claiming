@@ -223,9 +223,9 @@ namespace Masasamjant.Claiming.Http
 
         private static void AddClaimKeyParameters(HttpGetRequest request, ClaimKey claimKey)
         {
-            request.Parameters.Add("instanceIdentifier", claimKey.InstanceIdentifier);
-            request.Parameters.Add("type", claimKey.AssemblyQualifiedTypeName);
-            request.Parameters.Add("app", claimKey.Application);
+            request.Parameters.Add(ClaimKey.InstanceIdentifierParameter, claimKey.InstanceIdentifier);
+            request.Parameters.Add(ClaimKey.TypeNameParameter, claimKey.AssemblyQualifiedTypeName);
+            request.Parameters.Add(ClaimKey.ApplicationParameter, claimKey.Application);
         }
     }
 }

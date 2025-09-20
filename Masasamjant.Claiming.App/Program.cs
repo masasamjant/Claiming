@@ -1,6 +1,4 @@
-using Masasamjant.Claiming.Http;
-using Masasamjant.Claiming.Memory;
-using Masasamjant.Claiming.SqlServer;
+using Masasamjant.Http;
 
 namespace Masasamjant.Claiming.App
 {
@@ -16,31 +14,10 @@ namespace Masasamjant.Claiming.App
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Register claim manager factory.
+            builder.Services.AddClaimManagerFactory(builder.Configuration, new HttpClientConfiguration());
             
-            // Get configuration what kind of claim manager should be used.
-            var managerType = managerSection["Type"];
-
-            // Claim manager type configuration is mandatory.
-            if (string.IsNullOrWhiteSpace(managerType))
-                throw new InvalidOperationException("Masasamjant.Claming.Manager.Type configuration is mandatory.");
-
-            // Register correct claim manager factory implementation.
-            switch (managerType)
-            {
-                case ClaimManagerType.MemoryClaimManager:
-                    builder.Services.AddTransient<IClaimManagerFactory, MemoryClaimManagerFactory>();
-                    break;
-                case ClaimManagerType.HttpClaimManager:
-                    builder.Services.AddHttpClient();
-                    builder.Services.AddTransient<IClaimManagerFactory, HttpClaimManagerFactory>();
-                    break;
-                case ClaimManagerType.EntityClaimManager:
-                    builder.Services.AddTransient<IClaimManagerFactory, EntityClaimManagerFactory>();
-                    break;
-                default:
-                    throw new NotSupportedException($"'{managerType}' is not supported claim manager.");
-            }
-
             var app = builder.Build();
 
             // Check if HTTPS requirement is configured.

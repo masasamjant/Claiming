@@ -1,6 +1,7 @@
 using DemoApp.Core;
 using Masasamjant.Claiming;
-using Masasamjant.Claiming.Memory;
+using Masasamjant.Http;
+using Masasamjant.Http.Abstractions;
 
 namespace DemoApp
 {
@@ -19,10 +20,11 @@ namespace DemoApp
             builder.Services.AddSingleton<IRepository<Product>>(productRepository);
             builder.Services.AddSingleton<IRepository<User>>(userRepository);
 
+            // Register JSON Http client builder
+            builder.Services.AddJsonHttpClientBuilder(new HttpClientConfiguration(), new ConfigurationHttpBaseAddressProviderFactory(builder.Configuration, "Masasamjant"), HttpCacheManager.Default);
+
             // Register claim manager.
-            var claimStorage = new MemoryClaimStorage();
-            var claimManager = new StorageClaimManager(claimStorage);
-            builder.Services.AddSingleton<IClaimManager>(claimManager);
+            builder.Services.AddClaimManagerFactory(builder.Configuration);
 
             // Register services.
             builder.Services.AddTransient<IService<string, User>, UserService>();

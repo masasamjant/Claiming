@@ -23,12 +23,21 @@ namespace DemoApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(string name)
+        public async Task<IActionResult> Details(string name, bool cancel = false)
         {
             var user = await service.FindAsync(name);
 
             if (user == null)
                 return RedirectToAction("Index", "User");
+
+            if (cancel)
+            {
+                var ownerIdentifier = GetSessionUser();
+                var claim = await service.GetClaimAsync(user.GetClaimKey(), ownerIdentifier);
+
+                if (claim != null)
+                    await service.ReleaseClaimAsync(claim);
+            }
 
             return View(new UserViewModel()
             {

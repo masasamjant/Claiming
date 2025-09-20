@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Masasamjant.Claiming.EntityFramework\Masasamjant.Claiming.EntityFramework.csproj" />
+    <ProjectReference Include="..\Masasamjant.Claiming.Extensions\Masasamjant.Claiming.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

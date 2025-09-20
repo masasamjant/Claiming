@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Masasamjant.Claiming.Extensions\Masasamjant.Claiming.Extensions.csproj" />
     <ProjectReference Include="..\Masasamjant.Claiming\Masasamjant.Claiming.csproj" />
   </ItemGroup>
 

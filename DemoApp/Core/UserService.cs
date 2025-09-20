@@ -6,8 +6,8 @@ namespace DemoApp.Core
     {
         private readonly IRepository<User> repository;
 
-        public UserService(IRepository<User> repository, IClaimManager claimManager)
-            : base(claimManager)
+        public UserService(IRepository<User> repository, IClaimManagerFactory claimManagerFactory, IConfiguration configuration)
+            : base(claimManagerFactory, configuration)
         {
             this.repository = repository;
         }

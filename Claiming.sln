@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.App", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming", "Masasamjant.Claiming\Masasamjant.Claiming.csproj", "{EF5E3C75-C775-401F-AD83-8A921957D6E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Extensions", "Masasamjant.Claiming.Extensions\Masasamjant.Claiming.Extensions.csproj", "{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{EF5E3C75-C775-401F-AD83-8A921957D6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF5E3C75-C775-401F-AD83-8A921957D6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF5E3C75-C775-401F-AD83-8A921957D6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{90D4E096-586C-45C0-928C-7E468911FE6A} = {EB362616-53B3-459F-A945-842549B44FF5}
 		{1750C97C-CC4B-4C12-AEA7-31E1954D812D} = {EB362616-53B3-459F-A945-842549B44FF5}
 		{EF5E3C75-C775-401F-AD83-8A921957D6E3} = {EB362616-53B3-459F-A945-842549B44FF5}
+		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890} = {EB362616-53B3-459F-A945-842549B44FF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BE458A5-7275-4BAF-BE23-E5A7AA9C705F}
