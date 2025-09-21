@@ -20,7 +20,7 @@ namespace Masasamjant.Claiming.Http
             string typeNameParameterName = TypeNameParameter,
             string applicationParameterName = ApplicationParameter)
         {
-            request.Parameters.Add(instanceIdentifierParameterName, claimKey.InstanceIdentifier);
+            request.Parameters.Add(instanceIdentifierParameterName, claimKey.InstanceIdentifierSHA1);
             request.Parameters.Add(typeNameParameterName, claimKey.AssemblyQualifiedTypeName);
             request.Parameters.Add(applicationParameterName, claimKey.Application);
         }

@@ -20,7 +20,7 @@ namespace Masasamjant.Claiming
             {
                 request.OwnerIdentifier,
                 request.ClaimKey.Application,
-                request.ClaimKey.InstanceIdentifier,
+                request.ClaimKey.InstanceIdentifierSHA1,
                 request.ClaimKey.AssemblyQualifiedTypeName,
                 request.LifeTimeMinutes.ToString(),
                 request.DateTimeKind.ToString()

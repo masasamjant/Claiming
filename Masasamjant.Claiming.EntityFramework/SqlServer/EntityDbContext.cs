@@ -49,7 +49,7 @@ namespace Masasamjant.Claiming.SqlServer
         {
             CheckDisposed();
             return await Set<EntityClaim>()
-                .Where(claim => claim.InstanceIdentifier == claimKey.InstanceIdentifier
+                .Where(claim => claim.InstanceIdentifierSHA1 == claimKey.InstanceIdentifierSHA1
                     && claim.AssemblyQualifiedTypeName == claimKey.AssemblyQualifiedTypeName
                     && claim.Application == claimKey.Application)
                 .FirstOrDefaultAsync();
@@ -81,7 +81,7 @@ namespace Masasamjant.Claiming.SqlServer
             return await Set<EntityClaim>()
                 .Where(ec => ec.ClaimIdentifier == other.ClaimIdentifier
                     && ec.OwnerIdentifier == other.OwnerIdentifier
-                    && ec.InstanceIdentifier == other.ClaimKey.InstanceIdentifier
+                    && ec.InstanceIdentifierSHA1 == other.ClaimKey.InstanceIdentifierSHA1
                     && ec.AssemblyQualifiedTypeName == other.ClaimKey.AssemblyQualifiedTypeName
                     && ec.Application == other.ClaimKey.Application)
                 .FirstOrDefaultAsync();
@@ -109,7 +109,7 @@ namespace Masasamjant.Claiming.SqlServer
         {
             CheckDisposed();
             return await Set<EntityClaim>()
-                .Where(claim => claim.InstanceIdentifier == claimKey.InstanceIdentifier
+                .Where(claim => claim.InstanceIdentifierSHA1 == claimKey.InstanceIdentifierSHA1
                     && claim.AssemblyQualifiedTypeName == claimKey.AssemblyQualifiedTypeName
                     && claim.Application == claimKey.Application)
                 .AnyAsync();

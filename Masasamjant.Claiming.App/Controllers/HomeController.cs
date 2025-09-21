@@ -7,17 +7,23 @@ namespace Masasamjant.Claiming.App.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> logger;
-    private readonly IClaimManagerFactory claimManagerFactory;
+    private readonly IClaimManager claimManager;
 
-    public HomeController(ILogger<HomeController> logger, IClaimManagerFactory claimManagerFactory)
+    public HomeController(ILogger<HomeController> logger, IClaimManagerFactory claimManagerFactory, IConfiguration configuration)
     {
         this.logger = logger;
-        this.claimManagerFactory = claimManagerFactory;
+        this.claimManager = claimManagerFactory.CreateClaimManager(configuration);
     }
 
     public IActionResult Index()
     {
         return View();
+    }
+
+    public async Task<IActionResult> Administration()
+    {
+        var claims = (await claimManager.GetClaimsAsync()).ToList();
+        return View(claims);
     }
 
     public IActionResult Privacy()

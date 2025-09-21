@@ -22,7 +22,7 @@
             : base(claimIdentifier, ownerIdentifier, claimKey, expiresAt)
         {
             AssemblyQualifiedTypeName = claimKey.AssemblyQualifiedTypeName;
-            InstanceIdentifier = claimKey.InstanceIdentifier;
+            InstanceIdentifierSHA1 = claimKey.InstanceIdentifierSHA1;
             Application = claimKey.Application;
         }
 
@@ -39,10 +39,10 @@
         public string AssemblyQualifiedTypeName { get; protected set; } = string.Empty;
 
         /// <summary>
-        /// Gets the unique identifier to identify object instance in claiming. Usually this is some key information like
+        /// Gets the SHA1 of unique identifier to identify object instance in claiming. Usually this is some key information like
         /// primary key value in database.
         /// </summary>
-        public string InstanceIdentifier { get; protected set; } = string.Empty;
+        public string InstanceIdentifierSHA1 { get; protected set; } = string.Empty;
 
         /// <summary>
         /// Gets the name of application.
@@ -51,12 +51,12 @@
 
         /// <summary>
         /// Prepares entity claim instance by assigning claim key 
-        /// from <see cref="AssemblyQualifiedTypeName"/> and <see cref="InstanceIdentifier"/>.
+        /// from <see cref="AssemblyQualifiedTypeName"/> and <see cref="InstanceIdentifierSHA1"/>.
         /// </summary>
         public void Prepare()
         {
             if (ClaimKey.IsEmpty)
-                ClaimKey = new ClaimKey(InstanceIdentifier, AssemblyQualifiedTypeName, Application);
+                ClaimKey = new ClaimKey(AssemblyQualifiedTypeName, InstanceIdentifierSHA1, Application);
         }
     }
 }

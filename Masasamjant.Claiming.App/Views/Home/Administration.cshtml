@@ -1,0 +1,36 @@
+﻿@model IList<IClaim>
+@{
+    ViewData["Title"] = "Claims";
+}
+<div class="text-center">
+    <h1 class="display-4">Claims</h1>
+    <p>Count: @Model.Count</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Claim</th>
+                <th>Owner</th>
+                <th>Application</th>
+                <th>Expires</th>
+                <th>Instance</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.ClaimIdentifier</td>
+                    <td>@claim.OwnerIdentifier</td>
+                    <td>@claim.ClaimKey.Application</td>
+                    <td>@claim.ExpiresAt</td>
+                    <td>@claim.ClaimKey.InstanceIdentifierSHA1</td>
+                    <td>@claim.ClaimKey.AssemblyQualifiedTypeName</td>
+                    <td>
+                        <a asp-action="Release" asp-controller="Home">Release</a>
+                    </td>
+                </tr>    
+            }
+        </tbody>
+    </table>
+</div>
