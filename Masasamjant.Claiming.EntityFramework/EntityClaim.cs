@@ -1,4 +1,6 @@
-﻿namespace Masasamjant.Claiming
+﻿using Masasamjant.Security;
+
+namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents claim, stored in database, of object instance.
@@ -24,6 +26,7 @@
             AssemblyQualifiedTypeName = claimKey.AssemblyQualifiedTypeName;
             InstanceIdentifierSHA1 = claimKey.InstanceIdentifierSHA1;
             Application = claimKey.Application;
+            UniqueClaimSHA1 = new Base64SHA1Provider().CreateHash(string.Concat(OwnerIdentifier, claimKey.AssemblyQualifiedTypeName, claimKey.InstanceIdentifierSHA1));
         }
 
         /// <summary>
@@ -48,6 +51,11 @@
         /// Gets the name of application.
         /// </summary>
         public string Application { get;protected set; } = string.Empty;
+
+        /// <summary>
+        /// Geths the SHA1 that makes the claim unique.
+        /// </summary>
+        public string UniqueClaimSHA1 { get; protected set; } = string.Empty;
 
         /// <summary>
         /// Prepares entity claim instance by assigning claim key 

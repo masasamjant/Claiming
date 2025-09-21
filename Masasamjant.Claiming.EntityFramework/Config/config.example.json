@@ -13,7 +13,9 @@
         "TableName": "EntityClaim",
         "OwnerIdentifierMaxLength": 128,
         "TypeNameMaxLength": 256,
-        "InstanceIdentifierMaxLength": 256
+        "InstanceIdentifierMaxLength": 256,
+        "UniqueClaimSHA1MaxLength": 256,
+        "UniqueClaimSHA1Index": "UIX_EntityClaim_ClaimKey" /* Name of "unique claim index" that covers owner, type and instance identifier sha */
       }
     }
   }

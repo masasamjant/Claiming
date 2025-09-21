@@ -32,6 +32,7 @@ namespace Masasamjant.Claiming.SqlServer
             builder.Property(x => x.AssemblyQualifiedTypeName).IsRequired().HasMaxLength(schema.TypeNameMaxLength);
             builder.Property(x => x.InstanceIdentifierSHA1).IsRequired().HasMaxLength(schema.InstanceIdentifierMaxLength);
             builder.Property(x => x.Application).IsRequired().HasMaxLength(schema.ApplicationMaxLength);
+            builder.Property(x => x.UniqueClaimSHA1).IsRequired().HasMaxLength(schema.UniqueClaimSHA1MaxLength);
             builder.Ignore(x => x.ClaimKey);
             builder.HasKey(x => new
             {
@@ -39,10 +40,8 @@ namespace Masasamjant.Claiming.SqlServer
             });
             builder.HasIndex(x => new
             {
-                x.OwnerIdentifier,
-                x.AssemblyQualifiedTypeName,
-                x.InstanceIdentifierSHA1
-            }).IsUnique();
+                x.UniqueClaimSHA1
+            }, schema.UniqueClaimSHA1Index).IsUnique();
         }
     }
 }
