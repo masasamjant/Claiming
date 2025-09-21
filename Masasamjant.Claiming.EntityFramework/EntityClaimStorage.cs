@@ -213,19 +213,28 @@ namespace Masasamjant.Claiming
                     if (claim != null)
                     {
                         claim.Prepare();
-                        if (claim.OwnerIdentifier == request.OwnerIdentifier)
-                            return new ClaimResponse(ClaimResult.Approved, claim);
+
+                        // If claim is expired, then remove it and will create new one.
+                        if (claim.IsExpired())
+                        {
+                            await repository.RemoveClaimAsync(claim);
+                        }
                         else
-                            return new ClaimResponse(ClaimResult.Denied, claim);
+                        {
+                            // Otherwise create response from current claim.
+                            if (claim.OwnerIdentifier == request.OwnerIdentifier)
+                                return new ClaimResponse(ClaimResult.Approved, claim);
+                            else
+                                return new ClaimResponse(ClaimResult.Denied, claim);
+                        }
                     }
-                    else
-                    {
-                        var expires = GetDateTime(request.DateTimeKind).AddMinutes(request.LifeTimeMinutes);
-                        claim = new EntityClaim(Guid.NewGuid(), request.OwnerIdentifier, request.ClaimKey, expires);
-                        claim = await repository.AddClaimAsync(claim);
-                        claim.Prepare();
-                        return new ClaimResponse(ClaimResult.Approved, claim);
-                    }
+
+                    // Create new claim.
+                    var expires = GetDateTime(request.DateTimeKind).AddMinutes(request.LifeTimeMinutes);
+                    claim = new EntityClaim(Guid.NewGuid(), request.OwnerIdentifier, request.ClaimKey, expires);
+                    claim = await repository.AddClaimAsync(claim);
+                    claim.Prepare();
+                    return new ClaimResponse(ClaimResult.Approved, claim);
                 }
             }
             catch (Exception exception)
