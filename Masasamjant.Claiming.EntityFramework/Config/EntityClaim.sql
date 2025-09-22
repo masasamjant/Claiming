@@ -5,7 +5,7 @@ CREATE TABLE [Claims].[EntityClaim]
 (
 	[ClaimIdentifier] UNIQUEIDENTIFIER NOT NULL,
 	[OwnerIdentifier] NVARCHAR(128) NOT NULL,
-	[ExpitesAt] DATETIMEOFFSET(7),
+	[ExpiresAt] DATETIMEOFFSET(7),
 	[AssemblyQualifiedTypeName] NVARCHAR(256) NOT NULL,
 	[InstanceIdentifierSHA1] NVARCHAR(256) NOT NULL,
 	[Application] NVARCHAR(128) NOT NULL,
