@@ -3,7 +3,7 @@
 namespace Masasamjant.Claiming
 {
     /// <summary>
-    /// Describes the claim.
+    /// Represents <see cref="Claim"/> with <see cref="ClaimResult"/>.
     /// </summary>
     public class ClaimDescriptor : Claim
     {
