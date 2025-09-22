@@ -29,55 +29,54 @@ namespace Masasamjant.Claiming.App.Controllers
             if (claim == null)
                 return NotFound();
 
-            return Ok(Create(claim));
+            return Ok(claim);
         }
 
         [Route(HttpClaimDefaultRoute.GetClaimByKeyRoute)]
-        public async Task<Claim?> GetClaimAsync(string instance, string type, string app)
+        public async Task<IActionResult> GetClaimAsync(string instance, string type, string app)
         {
             var claimKey = new ClaimKey(type, instance, app);
             var claim = await claimManager.GetClaimAsync(claimKey);
 
             if (claim == null)
-                return null;
+                return NotFound();
 
-            return Create(claim);
+            return Ok(claim);
         }
 
         [Route(HttpClaimDefaultRoute.GetClaimsRoute)]
-        public async Task<IEnumerable<Claim>> GetClaimsAsync()
+        public async Task<IActionResult> GetClaimsAsync()
         {
             var claims = await claimManager.GetClaimsAsync();
-            return claims.Select(Create).ToList();
+            return Ok(claims.ToList());
         }
 
         [Route(HttpClaimDefaultRoute.IsClaimedRoute)]
-        public async Task<bool> IsClaimedAsync(string instance, string type, string app)
+        public async Task<IActionResult> IsClaimedAsync(string instance, string type, string app)
         {
             var claimKey = new ClaimKey(type, instance, app);
-            return await claimManager.IsClaimedAsync(claimKey);
+            var claimed = await claimManager.IsClaimedAsync(claimKey);
+            return Ok(claimed);
         }
 
         [Route(HttpClaimDefaultRoute.ReleaseClaimRoute)]
         [HttpPost]
-        public async Task<bool> ReleaseClaimAsync([FromBody] Claim claim)
+        public async Task<IActionResult> ReleaseClaimAsync([FromBody] Claim claim)
         {
-            return await claimManager.ReleaseClaimAsync(claim);
+            var released = await claimManager.ReleaseClaimAsync(claim);
+            return Ok(released);
         }
 
         [Route(HttpClaimDefaultRoute.TryClaimRoute)]
         [HttpPost]
-        public async Task<ClaimResponse> TryClaimAsync([FromBody] ClaimRequest request)
+        public async Task<IActionResult> TryClaimAsync([FromBody] ClaimRequest request)
         {
             var response = await claimManager.TryClaimAsync(request);
-            
-            if (response.Result == ClaimResult.NotFound)
-                return new ClaimResponse(ClaimResult.NotFound, null);
 
-            if (response.Result == ClaimResult.Approved && response.Claim != null)
-                return new ClaimResponse(ClaimResult.Approved, Create(response.Claim));
+            if (response == null)
+                response = new ClaimResponse(ClaimResult.NotFound, null);
 
-            return new ClaimResponse(ClaimResult.Denied, response.Claim != null ? Create(response.Claim) : null);
+            return Ok(response);
         }
 
         [Route(HttpClaimDefaultRoute.UseClaimLifeTimeRoute)]
@@ -86,8 +85,5 @@ namespace Masasamjant.Claiming.App.Controllers
         {
             claimManager.UseClaimLifeTime(minutes);
         }
-
-        private static Claim Create(IClaim claim)
-            => new(claim.ClaimIdentifier, claim.OwnerIdentifier, claim.ClaimKey, claim.ExpiresAt);
     }
 }

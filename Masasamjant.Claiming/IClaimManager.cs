@@ -19,7 +19,7 @@
         /// <param name="ownerIdentifier">The optional identifier of claim owner.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        Task<IClaim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier);
+        Task<Claim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier);
 
         /// <summary>
         /// Gets <see cref="IClaim"/> of object instance specified by <see cref="ClaimKey"/>.
@@ -27,14 +27,14 @@
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        Task<IClaim?> GetClaimAsync(ClaimKey claimKey);
+        Task<Claim?> GetClaimAsync(ClaimKey claimKey);
 
         /// <summary>
         /// Gets all claims.
         /// </summary>
         /// <returns>A <see cref="IEnumerable{IClaim}"/> of all claims.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        Task<IEnumerable<IClaim>> GetClaimsAsync();
+        Task<IEnumerable<Claim>> GetClaimsAsync();
 
         /// <summary>
         /// Check if object instance specified by <see cref="ClaimKey"/> is claimed.
@@ -50,7 +50,7 @@
         /// <param name="claim">The <see cref="IClaim"/> to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        Task<bool> ReleaseClaimAsync(IClaim claim);
+        Task<bool> ReleaseClaimAsync(Claim claim);
 
         /// <summary>
         /// Try claim object instance to owner using specified <see cref="IClaimRequest"/>.
@@ -58,7 +58,7 @@
         /// <param name="request">The <see cref="IClaimRequest"/>.</param>
         /// <returns>A <see cref="IClaimResponse"/>.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        Task<IClaimResponse> TryClaimAsync(IClaimRequest request);
+        Task<ClaimResponse> TryClaimAsync(ClaimRequest request);
 
         /// <summary>
         /// Changes <see cref="ClaimLifeTimeMinutes"/>.

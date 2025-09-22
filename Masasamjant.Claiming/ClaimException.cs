@@ -17,7 +17,7 @@
         /// Initializes new instance of the <see cref="ClaimException"/> class.
         /// </summary>
         /// <param name="claim">The claim.</param>
-        public ClaimException(IClaim claim)
+        public ClaimException(Claim claim)
             : this("Unexpected exception when using specified claim.", claim)
         { }
 
@@ -35,7 +35,7 @@
         /// </summary>
         /// <param name="message">The exception message.</param>
         /// <param name="claim">The claim.</param>
-        public ClaimException(string message, IClaim claim)
+        public ClaimException(string message, Claim claim)
             : this(message, claim, null)
         { }
 
@@ -45,7 +45,7 @@
         /// <param name="message">The exception message.</param>
         /// <param name="claim">The claim.</param>
         /// <param name="innerException">The inner exception or <c>null</c>.</param>
-        public ClaimException(string message, IClaim claim, Exception? innerException)
+        public ClaimException(string message, Claim claim, Exception? innerException)
             : base(message, innerException)
         {
             Claim = claim;
@@ -80,6 +80,6 @@
         /// <summary>
         /// Gets the claim associated with exception.
         /// </summary>
-        public IClaim? Claim { get; }
+        public Claim? Claim { get; }
     }
 }

@@ -10,7 +10,7 @@ namespace Masasamjant.Claiming
         /// <summary>
         /// Gets the claim descriptor.
         /// </summary>
-        public IClaimDescriptor ClaimDescriptor { get; set; } = new ClaimDescriptor();
+        public ClaimDescriptor ClaimDescriptor { get; set; } = new ClaimDescriptor();
 
         /// <summary>
         /// Gets or sets the name of retry area.

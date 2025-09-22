@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Masasamjant.Claiming.EntityFramework\Masasamjant.Claiming.EntityFramework.csproj" />
+    <ProjectReference Include="..\Masasamjant.Claiming.Http\Masasamjant.Claiming.Http.csproj" />
+    <ProjectReference Include="..\Masasamjant.Claiming.Memory\Masasamjant.Claiming.Memory.csproj" />
     <ProjectReference Include="..\Masasamjant.Claiming\Masasamjant.Claiming.csproj" />
   </ItemGroup>
 

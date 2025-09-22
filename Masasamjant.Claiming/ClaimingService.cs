@@ -28,7 +28,7 @@ namespace Masasamjant.Claiming
         /// <param name="claimable">The <see cref="IClaimable"/> to attempt to claim.</param>
         /// <param name="ownerIdentifier">The unique identifier or claim owner.</param>
         /// <returns>A <see cref="IClaimDescriptor"/> to descibe the result.</returns>
-        public Task<IClaimDescriptor> TryClaimAsync(IClaimable claimable, string ownerIdentifier)
+        public Task<ClaimDescriptor> TryClaimAsync(IClaimable claimable, string ownerIdentifier)
         {
             return TryClaimAsync(claimable.GetClaimKey(), ownerIdentifier);
         }
@@ -39,7 +39,7 @@ namespace Masasamjant.Claiming
         /// <param name="claimKey">The <see cref="ClaimKey"/> of instance to claim.</param>
         /// <param name="ownerIdentifier">The unique identifier or claim owner.</param>
         /// <returns>A <see cref="IClaimDescriptor"/> to descibe the result.</returns>
-        public async Task<IClaimDescriptor> TryClaimAsync(ClaimKey claimKey, string ownerIdentifier)
+        public async Task<ClaimDescriptor> TryClaimAsync(ClaimKey claimKey, string ownerIdentifier)
         {
             var request = new ClaimRequest(claimKey, ownerIdentifier, ClaimManager.ClaimLifeTimeMinutes);
             var response = await ClaimManager.TryClaimAsync(request);
@@ -55,7 +55,7 @@ namespace Masasamjant.Claiming
         /// <param name="claimKey">The <see cref="ClaimKey"/> of the claimed instance.</param>
         /// <param name="ownerIdentifier">The expected claim owner.</param>
         /// <returns>A <see cref="IClaimDescriptor"/>s of claims specified by <paramref name="claimKey"/>.</returns>
-        public async Task<IClaimDescriptor> GetClaimAsync(ClaimKey claimKey, string ownerIdentifier)
+        public async Task<ClaimDescriptor> GetClaimAsync(ClaimKey claimKey, string ownerIdentifier)
         {
             var claim = await ClaimManager.GetClaimAsync(claimKey);
             if (claim == null)
@@ -70,7 +70,7 @@ namespace Masasamjant.Claiming
         /// <param name="ownerIdentifier">The expected claim owner.</param>
         /// <param name="onlyOwnedClaims"><c>true</c> to get only claims owned by user specified by <paramref name="ownerIdentifier"/>; <c>false</c> otherwise.</param>
         /// <returns>A <see cref="IClaimDescriptor"/>s of all claims or claims owner by <paramref name="ownerIdentifier"/>.</returns>
-        public async Task<IEnumerable<IClaimDescriptor>> GetClaimsAsync(string ownerIdentifier, bool onlyOwnedClaims)
+        public async Task<IEnumerable<ClaimDescriptor>> GetClaimsAsync(string ownerIdentifier, bool onlyOwnedClaims)
         {
             var claims = onlyOwnedClaims
                 ? (await ClaimManager.GetClaimsAsync()).Where(claim => claim.OwnerIdentifier.Equals(ownerIdentifier)).ToList()
@@ -92,7 +92,7 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="claimDescriptor">The <see cref="IClaimDescriptor"/> of claim to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
-        public async Task<bool> ReleaseClaimAsync(IClaimDescriptor claimDescriptor)
+        public async Task<bool> ReleaseClaimAsync(ClaimDescriptor claimDescriptor)
         {
             if (!claimDescriptor.IsClaimed || !claimDescriptor.IsApproved)
                 return false;

@@ -23,7 +23,7 @@ namespace DemoApp.Core
             return true;
         }
 
-        public async Task<IClaimDescriptor> EditAsync(User instance, IClaim claim)
+        public async Task<ClaimDescriptor> EditAsync(User instance, Claim claim)
         {
             var currentClaim = await ClaimManager.GetClaimAsync(instance.GetClaimKey());
 

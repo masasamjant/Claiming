@@ -5,7 +5,7 @@ namespace Masasamjant.Claiming
     /// <summary>
     /// Represents response to attempt to claim object instance.
     /// </summary>
-    public class ClaimResponse : IClaimResponse
+    public sealed class ClaimResponse
     {
         /// <summary>
         /// Initializes new instance of the <see cref="ClaimResponse"/> class.
@@ -68,7 +68,5 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <returns>A <see cref="ClaimResponse"/> for <see cref="ClaimResult.Denied"/>.</returns>
         public static ClaimResponse Denied(Claim claim) => new ClaimResponse(ClaimResult.Denied, claim);
-
-        IClaim? IClaimResponse.Claim => Claim;
     }
 }

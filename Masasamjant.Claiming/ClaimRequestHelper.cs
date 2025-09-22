@@ -3,9 +3,17 @@ using System.Text;
 
 namespace Masasamjant.Claiming
 {
+    /// <summary>
+    /// Provides helper methods to <see cref="ClaimRequest"/> class.
+    /// </summary>
     public static class ClaimRequestHelper
     {
-        public static string ComputeChecksum(IClaimRequest request)
+        /// <summary>
+        /// Computes checksum for specified <see cref="ClaimRequest"/>.
+        /// </summary>
+        /// <param name="request">The claim request.</param>
+        /// <returns>A checksum string.</returns>
+        public static string ComputeChecksum(ClaimRequest request)
         {
             if (request.ClaimKey.IsEmpty)
                 return string.Empty;
@@ -14,7 +22,7 @@ namespace Masasamjant.Claiming
             return Convert.ToBase64String(hash);
         }
 
-        private static byte[] GetRequestBytes(IClaimRequest request)
+        private static byte[] GetRequestBytes(ClaimRequest request)
         {
             var values = new[]
             {

@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming", "Mas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Extensions", "Masasamjant.Claiming.Extensions\Masasamjant.Claiming.Extensions.csproj", "{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Http", "Masasamjant.Claiming.Http\Masasamjant.Claiming.Http.csproj", "{83A192C6-011C-4E0E-BC50-EA8765CC77D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Masasamjant.Claiming.Memory", "Masasamjant.Claiming.Memory\Masasamjant.Claiming.Memory.csproj", "{95EE9050-FBFE-4911-AC66-CA95B10E15AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A192C6-011C-4E0E-BC50-EA8765CC77D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A192C6-011C-4E0E-BC50-EA8765CC77D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A192C6-011C-4E0E-BC50-EA8765CC77D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A192C6-011C-4E0E-BC50-EA8765CC77D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95EE9050-FBFE-4911-AC66-CA95B10E15AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95EE9050-FBFE-4911-AC66-CA95B10E15AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95EE9050-FBFE-4911-AC66-CA95B10E15AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95EE9050-FBFE-4911-AC66-CA95B10E15AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +65,8 @@ Global
 		{1750C97C-CC4B-4C12-AEA7-31E1954D812D} = {EB362616-53B3-459F-A945-842549B44FF5}
 		{EF5E3C75-C775-401F-AD83-8A921957D6E3} = {EB362616-53B3-459F-A945-842549B44FF5}
 		{35BC8C5C-B7BF-4F3C-B495-D3B148DDC890} = {EB362616-53B3-459F-A945-842549B44FF5}
+		{83A192C6-011C-4E0E-BC50-EA8765CC77D8} = {EB362616-53B3-459F-A945-842549B44FF5}
+		{95EE9050-FBFE-4911-AC66-CA95B10E15AB} = {EB362616-53B3-459F-A945-842549B44FF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BE458A5-7275-4BAF-BE23-E5A7AA9C705F}

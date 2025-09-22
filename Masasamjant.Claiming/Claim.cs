@@ -5,7 +5,7 @@ namespace Masasamjant.Claiming
     /// <summary>
     /// Represents claim of object instance.
     /// </summary>
-    public class Claim : IClaim
+    public class Claim
     {
         /// <summary>
         /// Initializes new instance of the <see cref="Claim"/> class.

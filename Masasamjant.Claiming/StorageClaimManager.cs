@@ -1,6 +1,4 @@
-﻿using Masasamjant.Claiming.Abstractions;
-
-namespace Masasamjant.Claiming
+﻿namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents manager of claims that use <see cref="ClaimStorage"/> to store claims.
@@ -25,7 +23,7 @@ namespace Masasamjant.Claiming
         /// <param name="claimIdentifier">The claim identifier.</param>
         /// <param name="ownerIdentifier">The optional identifier of claim owner.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
-        public override async Task<IClaim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier)
+        public override async Task<Claim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier)
         {
             try
             {
@@ -48,7 +46,7 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
-        public override async Task<IClaim?> GetClaimAsync(ClaimKey claimKey)
+        public override async Task<Claim?> GetClaimAsync(ClaimKey claimKey)
         {
             try
             {
@@ -70,7 +68,7 @@ namespace Masasamjant.Claiming
         /// Gets all claims.
         /// </summary>
         /// <returns>A <see cref="IEnumerable{IClaim}"/> of all claims.</returns>
-        public override async Task<IEnumerable<IClaim>> GetClaimsAsync()
+        public override async Task<IEnumerable<Claim>> GetClaimsAsync()
         {
             try
             {
@@ -113,14 +111,14 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="claim">The <see cref="IClaim"/> to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
-        public override async Task<bool> ReleaseClaimAsync(IClaim claim)
+        public override async Task<bool> ReleaseClaimAsync(Claim claim)
         {
             try
             {
                 if (claim.IsEmpty)
                     return false;
 
-                return await storage.ReleaseClaimAsync(GetClaim(claim));
+                return await storage.ReleaseClaimAsync(claim);
             }
             catch (Exception exception)
             {
@@ -136,13 +134,13 @@ namespace Masasamjant.Claiming
         /// </summary>
         /// <param name="request">The <see cref="IClaimRequest"/>.</param>
         /// <returns>A <see cref="IClaimResponse"/>.</returns>
-        public override async Task<IClaimResponse> TryClaimAsync(IClaimRequest request)
+        public override async Task<ClaimResponse> TryClaimAsync(ClaimRequest request)
         {
             ValidateRequestChecksum(request);
 
             try
             {
-                return await storage.TryGetClaimAsync(GetClaimRequest(request));
+                return await storage.TryGetClaimAsync(request);
             }
             catch (Exception exception)
             {
@@ -151,32 +149,6 @@ namespace Masasamjant.Claiming
 
                 throw new ClaimException("Unexpected exception when attempt to claim using specified claim key.", request.ClaimKey, exception);
             }
-        }
-
-        /// <summary>
-        /// Creates <see cref="Claim"/> suitable for <see cref="ClaimStorage"/> from specified <see cref="IClaim"/>.
-        /// </summary>
-        /// <param name="claim">The <see cref="IClaim"/>.</param>
-        /// <returns>A <see cref="Claim"/> suitable for <see cref="ClaimStorage"/>.</returns>
-        protected virtual Claim GetClaim(IClaim claim)
-        {
-            if (claim is Claim c)
-                return c;
-
-            return new Claim(claim.ClaimIdentifier, claim.OwnerIdentifier, claim.ClaimKey, claim.ExpiresAt);
-        }
-
-        /// <summary>
-        /// Creates <see cref="ClaimRequest"/> suitable for <see cref="ClaimStorage"/> from specified <see cref="IClaimRequest"/>.
-        /// </summary>
-        /// <param name="request"><see cref="IClaimRequest"/>.</param>
-        /// <returns>A <see cref="ClaimRequest"/> suitable for <see cref="ClaimStorage"/>.</returns>
-        protected virtual ClaimRequest GetClaimRequest(IClaimRequest request)
-        {
-            if (request is ClaimRequest claimRequest)
-                return claimRequest;
-
-            return new ClaimRequest(request.ClaimKey, request.OwnerIdentifier, request.LifeTimeMinutes);
         }
     }
 }

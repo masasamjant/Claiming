@@ -1,4 +1,4 @@
-﻿namespace Masasamjant.Claiming.Abstractions
+﻿namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents abstract manager of claims.
@@ -17,29 +17,29 @@
         }
 
         /// <summary>
-        /// Gets <see cref="IClaim"/> specified by claim identifier. If claim owner is specified, 
+        /// Gets <see cref="Claim"/> specified by claim identifier. If claim owner is specified, 
         /// then claim must be owner by specified owner or <c>null</c> will be returned even if claim exist.
         /// </summary>
         /// <param name="claimIdentifier">The claim identifier.</param>
         /// <param name="ownerIdentifier">The optional identifier of claim owner.</param>
-        /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
+        /// <returns>A <see cref="Claim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public abstract Task<IClaim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier);
+        public abstract Task<Claim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier);
 
         /// <summary>
-        /// Gets <see cref="IClaim"/> of object instance specified by <see cref="ClaimKey"/>.
+        /// Gets <see cref="Claim"/> of object instance specified by <see cref="ClaimKey"/>.
         /// </summary>
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
-        /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
+        /// <returns>A <see cref="Claim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public abstract Task<IClaim?> GetClaimAsync(ClaimKey claimKey);
+        public abstract Task<Claim?> GetClaimAsync(ClaimKey claimKey);
 
         /// <summary>
         /// Gets all claims.
         /// </summary>
-        /// <returns>A <see cref="IEnumerable{IClaim}"/> of all claims.</returns>
+        /// <returns>A <see cref="IEnumerable{Claim}"/> of all claims.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public abstract Task<IEnumerable<IClaim>> GetClaimsAsync();
+        public abstract Task<IEnumerable<Claim>> GetClaimsAsync();
 
         /// <summary>
         /// Check if object instance specified by <see cref="ClaimKey"/> is claimed.
@@ -50,20 +50,20 @@
         public abstract Task<bool> IsClaimedAsync(ClaimKey claimKey);
 
         /// <summary>
-        /// Releases specified <see cref="IClaim"/>.
+        /// Releases specified <see cref="Claim"/>.
         /// </summary>
-        /// <param name="claim">The <see cref="IClaim"/> to release.</param>
+        /// <param name="claim">The <see cref="Claim"/> to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public abstract Task<bool> ReleaseClaimAsync(IClaim claim);
+        public abstract Task<bool> ReleaseClaimAsync(Claim claim);
 
         /// <summary>
-        /// Try claim object instance to owner using specified <see cref="IClaimRequest"/>.
+        /// Try claim object instance to owner using specified <see cref="ClaimRequest"/>.
         /// </summary>
-        /// <param name="request">The <see cref="IClaimRequest"/>.</param>
-        /// <returns>A <see cref="IClaimResponse"/>.</returns>
+        /// <param name="request">The <see cref="ClaimRequest"/>.</param>
+        /// <returns>A <see cref="ClaimResponse"/>.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public abstract Task<IClaimResponse> TryClaimAsync(IClaimRequest request);
+        public abstract Task<ClaimResponse> TryClaimAsync(ClaimRequest request);
 
         /// <summary>
         /// Changes <see cref="ClaimLifeTimeMinutes"/>.
@@ -80,11 +80,11 @@
         }
 
         /// <summary>
-        /// Validates that checksum of <see cref="IClaimRequest"/> is expected.
+        /// Validates that checksum of <see cref="ClaimRequest"/> is expected.
         /// </summary>
-        /// <param name="request">The <see cref="IClaimRequest"/>.</param>
+        /// <param name="request">The <see cref="ClaimRequest"/>.</param>
         /// <exception cref="ClaimException">If the checksum does not match.</exception>
-        protected static void ValidateRequestChecksum(IClaimRequest request)
+        protected static void ValidateRequestChecksum(ClaimRequest request)
         {
             var checksum = ClaimRequestHelper.ComputeChecksum(request);
 

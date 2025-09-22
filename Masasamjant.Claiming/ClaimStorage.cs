@@ -1,4 +1,4 @@
-﻿namespace Masasamjant.Claiming.Abstractions
+﻿namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents abstract storage of claims.

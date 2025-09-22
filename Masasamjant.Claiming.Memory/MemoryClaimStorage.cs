@@ -1,6 +1,4 @@
-﻿using Masasamjant.Claiming.Abstractions;
-
-namespace Masasamjant.Claiming.Memory
+﻿namespace Masasamjant.Claiming.Memory
 {
     /// <summary>
     /// Represents <see cref="ClaimStorage"/> that stores claims in memory using dictionary.

@@ -1,5 +1,4 @@
-﻿using Masasamjant.Claiming.Abstractions;
-using IHttpClientBuilder = Masasamjant.Http.Abstractions.IHttpClientBuilder;
+﻿using IHttpClientBuilder = Masasamjant.Http.Abstractions.IHttpClientBuilder;
 using IHttpClient = Masasamjant.Http.Abstractions.IHttpClient;
 using Masasamjant.Http;
 using Masasamjant.Http.Abstractions;
@@ -47,7 +46,7 @@ namespace Masasamjant.Claiming.Http
         /// <param name="ownerIdentifier">The optional identifier of claim owner.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public override async Task<IClaim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier)
+        public override async Task<Claim?> GetClaimAsync(Guid claimIdentifier, string? ownerIdentifier)
         {
             try
             {
@@ -75,7 +74,7 @@ namespace Masasamjant.Claiming.Http
         /// <param name="claimKey">The <see cref="ClaimKey"/> to specify object instance.</param>
         /// <returns>A <see cref="IClaim"/> or <c>null</c>, if claim not exist.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public override async Task<IClaim?> GetClaimAsync(ClaimKey claimKey)
+        public override async Task<Claim?> GetClaimAsync(ClaimKey claimKey)
         {
             try
             {
@@ -101,7 +100,7 @@ namespace Masasamjant.Claiming.Http
         /// </summary>
         /// <returns>A <see cref="IEnumerable{IClaim}"/> of all claims.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public override async Task<IEnumerable<IClaim>> GetClaimsAsync()
+        public override async Task<IEnumerable<Claim>> GetClaimsAsync()
         {
             try
             {
@@ -149,7 +148,7 @@ namespace Masasamjant.Claiming.Http
         /// <param name="claim">The <see cref="IClaim"/> to release.</param>
         /// <returns><c>true</c> if claim was still valid and released; <c>false</c> otherwise.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public override async Task<bool> ReleaseClaimAsync(IClaim claim)
+        public override async Task<bool> ReleaseClaimAsync(Claim claim)
         {
             try
             {
@@ -170,7 +169,7 @@ namespace Masasamjant.Claiming.Http
         /// <param name="request">The <see cref="IClaimRequest"/>.</param>
         /// <returns>A <see cref="IClaimResponse"/>.</returns>
         /// <exception cref="ClaimException">If exception occurs.</exception>
-        public override async Task<IClaimResponse> TryClaimAsync(IClaimRequest request)
+        public override async Task<ClaimResponse> TryClaimAsync(ClaimRequest request)
         {
             ValidateRequestChecksum(request);
 
@@ -220,12 +219,5 @@ namespace Masasamjant.Claiming.Http
             if (!string.IsNullOrWhiteSpace(configuration.ApiKey) && !string.IsNullOrWhiteSpace(configuration.ApiKeyHeader))
                 request.Headers.Add(configuration.ApiKeyHeader, configuration.ApiKey);
         }
-
-        //private static void AddClaimKeyParameters(HttpGetRequest request, ClaimKey claimKey)
-        //{
-        //    request.Parameters.Add(ClaimKey.InstanceIdentifierParameter, claimKey.InstanceIdentifier);
-        //    request.Parameters.Add(ClaimKey.TypeNameParameter, claimKey.AssemblyQualifiedTypeName);
-        //    request.Parameters.Add(ClaimKey.ApplicationParameter, claimKey.Application);
-        //}
     }
 }

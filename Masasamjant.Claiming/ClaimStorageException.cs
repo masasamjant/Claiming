@@ -1,4 +1,4 @@
-﻿namespace Masasamjant.Claiming.Abstractions
+﻿namespace Masasamjant.Claiming
 {
     /// <summary>
     /// Represents exception thrown by <see cref="ClaimStorage"/>.
@@ -17,7 +17,7 @@
         /// Initializes new instance of the <see cref="ClaimStorageException"/> class.
         /// </summary>
         /// <param name="claim">The claim.</param>
-        public ClaimStorageException(IClaim claim)
+        public ClaimStorageException(Claim claim)
             : base(claim)
         { }
 
@@ -35,7 +35,7 @@
         /// </summary>
         /// <param name="message">The exception message.</param>
         /// <param name="claim">The claim.</param>
-        public ClaimStorageException(string message, IClaim claim)
+        public ClaimStorageException(string message, Claim claim)
             : this(message, claim, null)
         { }
 
@@ -45,7 +45,7 @@
         /// <param name="message">The exception message.</param>
         /// <param name="claim">The claim.</param>
         /// <param name="innerException">The inner exception or <c>null</c>.</param>
-        public ClaimStorageException(string message, IClaim claim, Exception? innerException)
+        public ClaimStorageException(string message, Claim claim, Exception? innerException)
             : base(message, claim, innerException)
         { }
 

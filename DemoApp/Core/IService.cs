@@ -6,7 +6,7 @@ namespace DemoApp.Core
     {
         Task<bool> AddAsync(T instance);
 
-        Task<IClaimDescriptor> EditAsync(T instance, IClaim claim);
+        Task<ClaimDescriptor> EditAsync(T instance, Claim claim);
 
         Task<T?> FindAsync(TIdentifier identifier);
 

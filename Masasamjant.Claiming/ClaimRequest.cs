@@ -3,9 +3,9 @@
 namespace Masasamjant.Claiming
 {
     /// <summary>
-    /// Represents request to claim <see cref="IClaimable"/> to specified <see cref="IClamingUser"/>.
+    /// Represents request to claim specified <see cref="IClaimable"/> or <see cref="Claiming.ClaimKey"/> to specified owner.
     /// </summary>
-    public class ClaimRequest : IClaimRequest
+    public sealed class ClaimRequest
     {
         /// <summary>
         /// Initializes new instance of the <see cref="ClaimRequest"/> class.
