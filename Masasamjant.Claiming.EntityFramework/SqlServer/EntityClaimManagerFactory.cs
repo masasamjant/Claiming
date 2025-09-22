@@ -48,7 +48,7 @@ namespace Masasamjant.Claiming.SqlServer
         {
             var repositoryFactory = new EntityClaimRepositoryFactory();
             var storage = new EntityClaimStorage(repositoryFactory, configuration);
-            var manager = new StorageClaimManager(storage);
+            var manager = new EntityClaimManager(storage);
             manager.UseClaimLifeTime(claimLifeTime);
             return manager;
         }

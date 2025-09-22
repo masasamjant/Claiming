@@ -47,7 +47,7 @@ namespace Masasamjant.Claiming.Memory
         protected override StorageClaimManager CreateInstance(IConfiguration configuration, int claimLifeTime)
         {
             var storage = new MemoryClaimStorage();
-            var manager = new StorageClaimManager(storage);
+            var manager = new MemoryClaimManager(storage);
             manager.UseClaimLifeTime(claimLifeTime);
             return manager;
         }

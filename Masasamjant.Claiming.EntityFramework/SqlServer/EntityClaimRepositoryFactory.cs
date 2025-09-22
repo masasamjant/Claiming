@@ -18,8 +18,7 @@ namespace Masasamjant.Claiming.SqlServer
         {
             try
             {
-                var topSection = configuration.GetRequiredSection("Masasamjant");
-                var claimingSection = topSection.GetRequiredSection("Claiming");
+                var claimingSection = ClaimingConfigurationHelper.GetClaimingConfigurationSection(configuration);
                 var connectionString = claimingSection["ConnectionString"];
                 if (string.IsNullOrWhiteSpace(connectionString))
                     throw new ArgumentException("The configuration contains invalid connection string.", nameof(configuration));

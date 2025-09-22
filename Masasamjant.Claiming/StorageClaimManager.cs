@@ -1,9 +1,9 @@
 ﻿namespace Masasamjant.Claiming
 {
     /// <summary>
-    /// Represents manager of claims that use <see cref="ClaimStorage"/> to store claims.
+    /// Represents abstract manager of claims that use <see cref="ClaimStorage"/> to store claims.
     /// </summary>
-    public class StorageClaimManager : ClaimManager
+    public abstract class StorageClaimManager : ClaimManager
     {
         private readonly ClaimStorage storage;
 
@@ -11,7 +11,7 @@
         /// Initializes new instance of the <see cref="StorageClaimManager"/> class.
         /// </summary>
         /// <param name="storage">The <see cref="ClaimStorage"/>.</param>
-        public StorageClaimManager(ClaimStorage storage)
+        protected StorageClaimManager(ClaimStorage storage)
         {
             this.storage = storage;
         }

@@ -18,8 +18,7 @@ namespace Masasamjant.Claiming
         {
             try
             {
-                var topSection = configuration.GetRequiredSection("Masasamjant");
-                var claimingSection = topSection.GetRequiredSection("Claiming");
+                var claimingSection = ClaimingConfigurationHelper.GetClaimingConfigurationSection(configuration);
                 var managerSection = claimingSection.GetRequiredSection("Manager");
                 var type = managerSection["Type"];
                 if (!string.Equals(type, ManagerType, StringComparison.Ordinal))
